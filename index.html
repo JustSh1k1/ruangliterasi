@@ -1,0 +1,870 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portal pembelajaran digital PPKn untuk siswa SMA">
+<title>RuangLiterasi PPKn | SMA</title>
+
+<style>
+:root {
+    --primary: #14532d;
+    --secondary: #16a34a;
+    --light: #f0fdf4;
+    --dark: #17251c;
+    --muted: #64748b;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    line-height: 1.6;
+}
+
+header {
+    background: var(--primary);
+    color: white;
+    padding: 16px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #86efac;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    background: #166534;
+}
+
+.hero {
+    padding: 65px 7%;
+    background: linear-gradient(120deg, #14532d, #15803d);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.hero-content {
+    flex: 1;
+    min-width: 260px;
+}
+
+.hero h1 {
+    font-size: clamp(30px, 5vw, 46px);
+    line-height: 1.2;
+    margin-bottom: 18px;
+}
+
+.hero p {
+    color: #dcfce7;
+    max-width: 600px;
+    margin-bottom: 24px;
+}
+
+.hero-image {
+    font-size: 100px;
+    text-align: center;
+    flex: 0.5;
+    min-width: 150px;
+}
+
+.btn {
+    display: inline-block;
+    background: #22c55e;
+    color: #052e16;
+    padding: 11px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #86efac;
+}
+
+.btn-outline {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    margin-left: 8px;
+}
+
+.container {
+    width: 86%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+section {
+    padding: 55px 0;
+    scroll-margin-top: 20px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 30px;
+    color: var(--primary);
+}
+
+.section-desc {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 30px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: -1px;
+    padding-top: 25px;
+}
+
+.stat-card {
+    background: white;
+    padding: 22px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #00000008;
+}
+
+.stat-card h3 {
+    color: var(--secondary);
+    font-size: 28px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-icon {
+    background: var(--light);
+    font-size: 36px;
+    text-align: center;
+    padding: 25px;
+}
+
+.card h3 {
+    color: var(--primary);
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.tag {
+    display: inline-block;
+    background: #dcfce7;
+    color: #166534;
+    padding: 4px 9px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.card .btn {
+    font-size: 13px;
+    padding: 9px 12px;
+}
+
+.video-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    display: block;
+    background: #e2e8f0;
+}
+
+.video-card .card-content {
+    padding: 15px;
+}
+
+.activity {
+    background: #ecfdf5;
+}
+
+.activity-box {
+    background: white;
+    border-radius: 14px;
+    padding: 25px;
+    border: 1px solid #bbf7d0;
+}
+
+.activity-box h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.activity-box p {
+    color: var(--muted);
+    margin-bottom: 15px;
+}
+
+.steps {
+    margin: 15px 0 20px 20px;
+}
+
+.steps li {
+    margin-bottom: 8px;
+}
+
+.quiz {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 18px;
+}
+
+.quiz-question {
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.option {
+    display: block;
+    padding: 10px;
+    margin: 7px 0;
+    background: #f8fafc;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.option:hover {
+    background: #dcfce7;
+}
+
+.option input {
+    margin-right: 8px;
+}
+
+#hasil {
+    margin-top: 18px;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.reflection textarea {
+    width: 100%;
+    min-height: 110px;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font: inherit;
+    margin: 10px 0 15px;
+}
+
+footer {
+    background: #052e16;
+    color: #dcfce7;
+    padding: 30px 7%;
+    text-align: center;
+}
+
+footer p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+@media (max-width: 800px) {
+    header {
+        justify-content: center;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hero {
+        text-align: center;
+    }
+
+    .hero-image {
+        display: none;
+    }
+}
+
+@media (max-width: 520px) {
+    .grid, .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        width: 90%;
+    }
+
+    nav a {
+        font-size: 12px;
+        padding: 7px;
+    }
+
+    .section-title {
+        font-size: 25px;
+    }
+
+    .hero {
+        padding: 45px 6%;
+    }
+
+    .btn-outline {
+        margin: 10px 0 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER DAN NAVIGASI -->
+<header>
+    <div class="logo">Ruang<span>Literasi</span></div>
+
+    <nav>
+        <a href="#beranda">Beranda</a>
+        <a href="#materi">Materi</a>
+        <a href="#video">Video</a>
+        <a href="#tugas">Tugas</a>
+        <a href="#evaluasi">Evaluasi</a>
+        <a href="#refleksi">Refleksi</a>
+    </nav>
+</header>
+
+<!-- BERANDA -->
+<section class="hero" id="beranda">
+    <div class="hero-content">
+        <p>PORTAL PEMBELAJARAN DIGITAL PPKn SMA</p>
+        <h1>Belajar PPKn Lebih Mudah, Menarik, dan Interaktif</h1>
+        <p>
+            Temukan materi pembelajaran, tonton video edukasi,
+            kumpulkan tugas, dan uji pemahamanmu tentang
+            Pancasila, UUD 1945, demokrasi, serta kewarganegaraan.
+        </p>
+        <a href="#materi" class="btn">Mulai Belajar</a>
+        <a href="#evaluasi" class="btn btn-outline">Ikuti Kuis</a>
+    </div>
+
+    <div class="hero-image">📚</div>
+</section>
+
+<!-- STATISTIK -->
+<div class="container">
+    <div class="stats">
+        <div class="stat-card">
+            <h3>01</h3>
+            <p>Materi Digital</p>
+        </div>
+        <div class="stat-card">
+            <h3>02</h3>
+            <p>Video Edukasi</p>
+        </div>
+        <div class="stat-card">
+            <h3>03</h3>
+            <p>Evaluasi Mandiri</p>
+        </div>
+    </div>
+</div>
+
+<!-- MATERI -->
+<section id="materi">
+    <div class="container">
+        <h2 class="section-title">Materi Pembelajaran</h2>
+        <p class="section-desc">
+            Pelajari materi PPKn dan unduh modul untuk dibaca secara offline.
+        </p>
+
+        <div class="grid">
+            <article class="card">
+                <div class="card-icon">🇮🇩</div>
+                <div class="card-content">
+                    <span class="tag">Materi 1</span>
+                    <h3>Pancasila sebagai Dasar Negara</h3>
+                    <p>
+                        Memahami kedudukan, fungsi, dan penerapan
+                        nilai-nilai Pancasila dalam kehidupan.
+                    </p>
+                    <a class="btn" href="materi/pancasila.pdf" download>
+                        Unduh Modul PDF
+                    </a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">📜</div>
+                <div class="card-content">
+                    <span class="tag">Materi 2</span>
+                    <h3>UUD NRI Tahun 1945</h3>
+                    <p>
+                        Mempelajari konstitusi, hak dan kewajiban
+                        warga negara, serta aturan bernegara.
+                    </p>
+                    <a class="btn" href="materi/uud1945.pdf" download>
+                        Unduh Modul PDF
+                    </a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">🗳️</div>
+                <div class="card-content">
+                    <span class="tag">Materi 3</span>
+                    <h3>Demokrasi di Indonesia</h3>
+                    <p>
+                        Mengenal prinsip demokrasi, pemilu,
+                        musyawarah, dan partisipasi warga negara.
+                    </p>
+                    <a class="btn" href="materi/demokrasi.pdf" download>
+                        Unduh Modul PDF
+                    </a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">🤝</div>
+                <div class="card-content">
+                    <span class="tag">Materi 4</span>
+                    <h3>Bhinneka Tunggal Ika</h3>
+                    <p>
+                        Memahami keberagaman dan pentingnya
+                        toleransi dalam kehidupan masyarakat.
+                    </p>
+                    <a class="btn" href="materi/keberagaman.pdf" download>
+                        Unduh Modul PDF
+                    </a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">⚖️</div>
+                <div class="card-content">
+                    <span class="tag">Materi 5</span>
+                    <h3>Hak Asasi Manusia</h3>
+                    <p>
+                        Mempelajari HAM, perlindungan hak,
+                        dan tanggung jawab dalam kehidupan sosial.
+                    </p>
+                    <a class="btn" href="materi/ham.pdf" download>
+                        Unduh Modul PDF
+                    </a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">🏛️</div>
+                <div class="card-content">
+                    <span class="tag">Materi 6</span>
+                    <h3>Sistem Pemerintahan</h3>
+                    <p>
+                        Mengenal lembaga negara, pembagian
+                        kekuasaan, dan sistem pemerintahan Indonesia.
+                    </p>
+                    <a class="btn" href="materi/pemerintahan.pdf" download>
+                        Unduh Modul PDF
+                    </a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- VIDEO YOUTUBE -->
+<section id="video" style="background:#f1f5f9;">
+    <div class="container">
+        <h2 class="section-title">Video Edukasi</h2>
+        <p class="section-desc">
+            Belajar melalui video agar materi lebih mudah dipahami.
+        </p>
+
+        <div class="grid">
+            <article class="card video-card">
+                <iframe
+                    class="video-frame"
+                    src="https://www.youtube-nocookie.com/embed/M7lc1UVf-VE"
+                    title="Video pembelajaran PPKn"
+                    loading="lazy"
+                    allowfullscreen>
+                </iframe>
+                <div class="card-content">
+                    <h3>Video Pembelajaran 1</h3>
+                    <p>Ganti video ini dengan video Pancasila dari YouTube.</p>
+                </div>
+            </article>
+
+            <article class="card video-card">
+                <iframe
+                    class="video-frame"
+                    src="https://www.youtube-nocookie.com/embed/M7lc1UVf-VE"
+                    title="Video edukasi kewarganegaraan"
+                    loading="lazy"
+                    allowfullscreen>
+                </iframe>
+                <div class="card-content">
+                    <h3>Video Pembelajaran 2</h3>
+                    <p>Ganti video ini dengan video demokrasi atau UUD 1945.</p>
+                </div>
+            </article>
+
+            <article class="card video-card">
+                <iframe
+                    class="video-frame"
+                    src="https://www.youtube-nocookie.com/embed/M7lc1UVf-VE"
+                    title="Video edukasi kebangsaan"
+                    loading="lazy"
+                    allowfullscreen>
+                </iframe>
+                <div class="card-content">
+                    <h3>Video Pembelajaran 3</h3>
+                    <p>Ganti video ini dengan video keberagaman Indonesia.</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- PENGUMPULAN TUGAS -->
+<section id="tugas">
+    <div class="container">
+        <h2 class="section-title">Pengumpulan Tugas</h2>
+        <p class="section-desc">
+            Kirimkan tugas sesuai instruksi guru.
+        </p>
+
+        <div class="activity-box">
+            <h3>📁 Tugas Individu: Penerapan Nilai Pancasila</h3>
+            <p>
+                Amati penerapan nilai-nilai Pancasila di lingkungan
+                sekolah atau masyarakat, kemudian buat laporan singkat.
+            </p>
+
+            <ol class="steps">
+                <li>Tulis nama dan kelas pada dokumen tugas.</li>
+                <li>Jelaskan contoh penerapan nilai Pancasila.</li>
+                <li>Sertakan kesimpulan dan pendapatmu.</li>
+                <li>Simpan tugas dalam format PDF.</li>
+                <li>Kirimkan melalui formulir pengumpulan tugas.</li>
+            </ol>
+
+            <a
+                class="btn"
+                href="https://forms.google.com/"
+                target="_blank"
+                rel="noopener noreferrer">
+                Buka Form Pengumpulan Tugas
+            </a>
+
+            <p style="margin-top:15px;margin-bottom:0;">
+                Catatan: tautan di atas masih berupa contoh.
+                Ganti dengan tautan formulir milik guru.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- EVALUASI PEMBELAJARAN -->
+<section id="evaluasi" style="background:#f1f5f9;">
+    <div class="container">
+        <h2 class="section-title">Evaluasi Pembelajaran</h2>
+        <p class="section-desc">
+            Kerjakan kuis berikut untuk mengukur pemahamanmu.
+        </p>
+
+        <form id="quizForm">
+            <div class="quiz">
+                <p class="quiz-question">
+                    1. Apa kedudukan Pancasila bagi bangsa Indonesia?
+                </p>
+                <label class="option">
+                    <input type="radio" name="q1" value="a" required>
+                    Sebagai dasar negara
+                </label>
+                <label class="option">
+                    <input type="radio" name="q1" value="b">
+                    Sebagai nama lembaga negara
+                </label>
+                <label class="option">
+                    <input type="radio" name="q1" value="c">
+                    Sebagai peraturan sekolah
+                </label>
+            </div>
+
+            <div class="quiz">
+                <p class="quiz-question">
+                    2. Apa makna semboyan Bhinneka Tunggal Ika?
+                </p>
+                <label class="option">
+                    <input type="radio" name="q2" value="a" required>
+                    Semua masyarakat harus memiliki budaya yang sama
+                </label>
+                <label class="option">
+                    <input type="radio" name="q2" value="b">
+                    Berbeda-beda tetapi tetap satu
+                </label>
+                <label class="option">
+                    <input type="radio" name="q2" value="c">
+                    Perbedaan harus dihindari
+                </label>
+            </div>
+
+            <div class="quiz">
+                <p class="quiz-question">
+                    3. Bagaimana cara mengambil keputusan bersama
+                    yang sesuai dengan sila keempat Pancasila?
+                </p>
+                <label class="option">
+                    <input type="radio" name="q3" value="a" required>
+                    Memaksakan kehendak pribadi
+                </label>
+                <label class="option">
+                    <input type="radio" name="q3" value="b">
+                    Menyerahkan semua keputusan kepada satu orang
+                </label>
+                <label class="option">
+                    <input type="radio" name="q3" value="c">
+                    Melakukan musyawarah
+                </label>
+            </div>
+
+            <div class="quiz">
+                <p class="quiz-question">
+                    4. Pemilihan umum merupakan salah satu bentuk
+                    pelaksanaan prinsip apa?
+                </p>
+                <label class="option">
+                    <input type="radio" name="q4" value="a" required>
+                    Demokrasi
+                </label>
+                <label class="option">
+                    <input type="radio" name="q4" value="b">
+                    Diskriminasi
+                </label>
+                <label class="option">
+                    <input type="radio" name="q4" value="c">
+                    Monopoli kekuasaan
+                </label>
+            </div>
+
+            <div class="quiz">
+                <p class="quiz-question">
+                    5. Apa yang harus dilakukan ketika teman memiliki
+                    perbedaan agama atau budaya?
+                </p>
+                <label class="option">
+                    <input type="radio" name="q5" value="a" required>
+                    Menjauhinya
+                </label>
+                <label class="option">
+                    <input type="radio" name="q5" value="b">
+                    Menghormati perbedaan dan tetap bekerja sama
+                </label>
+                <label class="option">
+                    <input type="radio" name="q5" value="c">
+                    Memaksanya mengikuti kebiasaan kita
+                </label>
+            </div>
+
+            <button type="submit" class="btn">
+                Periksa Jawaban
+            </button>
+
+            <button type="reset" class="btn"
+                style="background:#e2e8f0;color:#334155;">
+                Ulangi Kuis
+            </button>
+
+            <div id="hasil" role="status" aria-live="polite"></div>
+        </form>
+
+        <div class="activity-box" style="margin-top:25px;">
+            <h3>Ingin evaluasi yang lebih lengkap?</h3>
+            <p>
+                Gunakan Google Forms untuk mengumpulkan jawaban siswa,
+                atau Quizizz untuk membuat kuis interaktif.
+            </p>
+            <a class="btn"
+               href="https://forms.google.com/"
+               target="_blank"
+               rel="noopener noreferrer">
+                Buka Google Forms
+            </a>
+            <a class="btn"
+               href="https://quizizz.com/"
+               target="_blank"
+               rel="noopener noreferrer">
+                Buka Quizizz
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- REFLEKSI -->
+<section id="refleksi">
+    <div class="container">
+        <h2 class="section-title">Refleksi Pembelajaran</h2>
+        <p class="section-desc">
+            Tuliskan pemahamanmu setelah mengikuti pembelajaran.
+        </p>
+
+        <div class="activity-box reflection">
+            <label for="refleksiText">
+                Apa hal baru yang kamu pelajari hari ini?
+            </label>
+
+            <textarea
+                id="refleksiText"
+                placeholder="Tuliskan refleksi pembelajaranmu di sini...">
+            </textarea>
+
+            <button class="btn" type="button" id="saveReflection">
+                Simpan Refleksi di Perangkat
+            </button>
+
+            <p id="refleksiStatus" role="status"
+               aria-live="polite" style="margin-top:12px;"></p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="logo">Ruang<span>Literasi</span> PPKn</div>
+    <p>Portal Pembelajaran Digital untuk Siswa SMA</p>
+    <p>Mendukung pembelajaran PPKn yang kreatif, kritis, dan interaktif.</p>
+    <p>&copy; 2026 RuangLiterasi PPKn | Proyek Inovasi Teknologi Pembelajaran</p>
+</footer>
+
+<script>
+// KUIS OTOMATIS
+document.getElementById("quizForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const kunci = {
+        q1: "a",
+        q2: "b",
+        q3: "c",
+        q4: "a",
+        q5: "b"
+    };
+
+    const data = new FormData(this);
+    let benar = 0;
+
+    for (const soal in kunci) {
+        if (data.get(soal) === kunci[soal]) {
+            benar++;
+        }
+    }
+
+    const nilai = benar * 20;
+
+    document.getElementById("hasil").textContent =
+        "Hasil kuis: " + benar + " dari 5 jawaban benar. Nilai kamu: " +
+        nilai + "/100.";
+
+    document.getElementById("hasil").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+});
+
+// REFLEKSI SEDERHANA
+// Catatan disimpan pada browser/perangkat yang digunakan.
+const refleksiText = document.getElementById("refleksiText");
+const refleksiStatus = document.getElementById("refleksiStatus");
+
+document.getElementById("saveReflection").addEventListener("click", function() {
+    const isi = refleksiText.value.trim();
+
+    if (!isi) {
+        refleksiStatus.textContent =
+            "Silakan tulis refleksi terlebih dahulu.";
+        return;
+    }
+
+    try {
+        localStorage.setItem("refleksiPPKn", isi);
+        refleksiStatus.textContent =
+            "Refleksi berhasil disimpan pada browser perangkat ini.";
+    } catch (error) {
+        refleksiStatus.textContent =
+            "Penyimpanan tidak tersedia. Silakan salin refleksimu.";
+    }
+});
+
+// Memuat refleksi yang tersimpan
+try {
+    const tersimpan = localStorage.getItem("refleksiPPKn");
+    if (tersimpan) {
+        refleksiText.value = tersimpan;
+    }
+} catch (error) {
+    // Website tetap dapat digunakan tanpa penyimpanan lokal.
+}
+</script>
+
+</body>
+</html>
